@@ -10,7 +10,7 @@ public class Usuario extends AggregateRoot {
     private Rol rol;
     private boolean activo;
 
-    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0.9+_.-]+@(.+)$");
+    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
 
     public Usuario() {}
 
