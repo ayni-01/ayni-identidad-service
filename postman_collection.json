@@ -1,0 +1,297 @@
+{
+  "info": {
+    "name": "Somos Ayni — identidad-service",
+    "description": "Endpoints del identidad-service (puerto 8081). Requiere JWT de identidad-service (puerto 8081).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "BASE_IDENTIDAD",
+      "value": "http://localhost:8081"
+    },
+    {
+      "key": "BASE_PERFILES",
+      "value": "http://localhost:8082"
+    },
+    {
+      "key": "BASE_RETOS",
+      "value": "http://localhost:8083"
+    },
+    {
+      "key": "BASE_POSTULACIONES",
+      "value": "http://localhost:8084"
+    },
+    {
+      "key": "BASE_HABILIDADES",
+      "value": "http://localhost:8085"
+    },
+    {
+      "key": "BASE_NOTIFICACIONES",
+      "value": "http://localhost:8086"
+    },
+    {
+      "key": "BASE_METRICAS",
+      "value": "http://localhost:8087"
+    },
+    {
+      "key": "TOKEN_EMPRESA",
+      "value": ""
+    },
+    {
+      "key": "TOKEN_TALENTO",
+      "value": ""
+    },
+    {
+      "key": "ID_EMPRESA",
+      "value": ""
+    },
+    {
+      "key": "ID_TALENTO",
+      "value": ""
+    },
+    {
+      "key": "RETO_ID",
+      "value": ""
+    },
+    {
+      "key": "POSTULACION_ID",
+      "value": ""
+    },
+    {
+      "key": "NOTIFICACION_ID",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Registro Empresa",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{BASE_IDENTIDAD}}/api/v1/auth/registro",
+          "host": [
+            "{{BASE_IDENTIDAD}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "auth",
+            "registro"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"empresa@somosayni.com\",\"password\":\"Pass1234!\",\"rol\":\"EMPRESA\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var r=pm.response.json();pm.collectionVariables.set(\"TOKEN_EMPRESA\",r.token);pm.collectionVariables.set(\"ID_EMPRESA\",r.usuarioId);pm.test(\"201\",()=>pm.response.to.have.status(201));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Registro Talento",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{BASE_IDENTIDAD}}/api/v1/auth/registro",
+          "host": [
+            "{{BASE_IDENTIDAD}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "auth",
+            "registro"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"talento@somosayni.com\",\"password\":\"Pass1234!\",\"rol\":\"TALENTO\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var r=pm.response.json();pm.collectionVariables.set(\"TOKEN_TALENTO\",r.token);pm.collectionVariables.set(\"ID_TALENTO\",r.usuarioId);pm.test(\"201\",()=>pm.response.to.have.status(201));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login Empresa",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{BASE_IDENTIDAD}}/api/v1/auth/login",
+          "host": [
+            "{{BASE_IDENTIDAD}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "auth",
+            "login"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"empresa@somosayni.com\",\"password\":\"Pass1234!\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var r=pm.response.json();pm.collectionVariables.set(\"TOKEN_EMPRESA\",r.token);pm.test(\"200\",()=>pm.response.to.have.status(200));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login Talento",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{BASE_IDENTIDAD}}/api/v1/auth/login",
+          "host": [
+            "{{BASE_IDENTIDAD}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "auth",
+            "login"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"talento@somosayni.com\",\"password\":\"Pass1234!\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var r=pm.response.json();pm.collectionVariables.set(\"TOKEN_TALENTO\",r.token);pm.test(\"200\",()=>pm.response.to.have.status(200));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cambiar Password",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{TOKEN_EMPRESA}}"
+          }
+        ],
+        "url": {
+          "raw": "{{BASE_IDENTIDAD}}/api/v1/auth/cambiar-password",
+          "host": [
+            "{{BASE_IDENTIDAD}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "auth",
+            "cambiar-password"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"passwordActual\":\"Pass1234!\",\"nuevaPassword\":\"NuevaPass456!\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_IDENTIDAD}}/actuator/health",
+          "host": [
+            "{{BASE_IDENTIDAD}}"
+          ],
+          "path": [
+            "actuator",
+            "health"
+          ]
+        }
+      }
+    }
+  ]
+}
